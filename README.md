@@ -55,8 +55,7 @@ model.summary()
 The model is trained using the Adam optimizer and Sparse Categorical Crossentropy loss. The dataset is split into training, validation, and test sets with a ratio of 70%, 20%, and 10% respectively. Training is performed over 11 epochs.
 
 ```python
-model.compile(optimizer='adam', loss=tf.losses.SparseCategoricalCrossentropy(), metrics=['accuracy'])
-hist = model.fit(train, epochs=11, validation_data=val, callbacks=[tensorboard_callback])
+history = model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test))
 ```
 ![epochs](https://github.com/farzeennimran/Moon-Phases-Prediction-Using-AI/assets/136755585/bbaa1892-bbaa-43b5-a0ba-23d47c35b0dd)
 
