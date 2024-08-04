@@ -64,10 +64,12 @@ history = model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test
 The model is evaluated using Precision, Recall, and Binary Accuracy metrics. 
 
 ```python
-pre = Precision()
-re = Recall()
-acc = BinaryAccuracy()
+loss, accuracy = model.evaluate(X_test, y_test)
+print("Test Accuracy:", accuracy)
 ```
+
+![acc](https://github.com/user-attachments/assets/207b1e21-a604-448d-bf52-a180e50fee89)
+
 
 ## Usage
 To use the model for predicting the moon phase of an input image, follow these steps:
