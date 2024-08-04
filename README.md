@@ -23,7 +23,7 @@ The goal of this project is to accurately classify images of the moon into one o
 8. Waning Crescent
 
 ## Dataset
-The dataset consists of images of the moon categorized into the aforementioned phases. The images are loaded and preprocessed using TensorFlow's image dataset utility.
+The dataset consists of images of the moon categorized into eight phases of moon. The images are loaded and preprocessed using TensorFlow's image dataset utility.
 
 ## Model Architecture
 The model is a Convolutional Neural Network (CNN) with the following architecture:
@@ -34,18 +34,22 @@ The model is a Convolutional Neural Network (CNN) with the following architectur
 
 ```python
 model = Sequential([
-    Conv2D(16, (3,3), activation='relu', input_shape=(256,256,3)),
-    MaxPooling2D(),
-    Conv2D(32, (3,3), activation='relu'),
-    MaxPooling2D(),
-    Conv2D(16, (3,3), activation='relu'),
-    MaxPooling2D(),
+    Conv2D(32, (3, 3), activation='relu', input_shape=(IMG_SIZE, IMG_SIZE, 3)),
+    MaxPooling2D(2, 2),
+    Conv2D(64, (3, 3), activation='relu'),
+    MaxPooling2D(2, 2),
     Flatten(),
-    Dense(256, activation='relu'),
-    Dense(8, activation='softmax')
+    Dense(128, activation='relu'),
+    Dropout(0.5),
+    Dense(len(CATEGORIES), activation='softmax')
 ])
+
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+model.summary()
 ```
-![model](https://github.com/farzeennimran/Moon-Phases-Prediction-Using-AI/assets/136755585/3bddeddc-9683-4c82-9ef9-4017733f5bce)
+![model](https://github.com/user-attachments/assets/c2e99836-7930-4790-a0cf-5ad0943010b5)
+
 
 ## Training
 The model is trained using the Adam optimizer and Sparse Categorical Crossentropy loss. The dataset is split into training, validation, and test sets with a ratio of 70%, 20%, and 10% respectively. Training is performed over 11 epochs.
