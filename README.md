@@ -61,7 +61,7 @@ history = model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test
 
 
 ## Evaluation
-The models accuracy is around 0.69 
+The model is evaluated using accuracy on the test set which is around 0.69 
 
 ```python
 loss, accuracy = model.evaluate(X_test, y_test)
