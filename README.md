@@ -8,7 +8,7 @@ This repository contains code for a deep learning model that predicts the phase 
 - [Model Architecture](#model-architecture)
 - [Training](#training)
 - [Evaluation](#evaluation)
-- [Usage](#usage)
+- [Making Predictions](#Making-Predictions)
 - [Results](#results)
 
 ## Overview
@@ -23,14 +23,16 @@ The goal of this project is to accurately classify images of the moon into one o
 8. Waning Crescent
 
 ## Dataset
-The dataset consists of images of the moon categorized into eight phases of moon. The images are loaded and preprocessed using TensorFlow's image dataset utility.
+The dataset consists of images of the moon labeled with their respective phases. The images are organized in subdirectories named after the phases. Ensure that the dataset is unzipped and placed in the correct directory structure.
 
 ## Model Architecture
 The model is a Convolutional Neural Network (CNN) with the following architecture:
 - Convolutional layers with ReLU activation
 - MaxPooling layers
 - Flatten layer
-- Dense layers with ReLU and softmax activation for classification
+- Dense layers with ReLU activation
+- Dropout layer
+- Output layer with softmax activation
 
 ```python
 model = Sequential([
@@ -44,24 +46,23 @@ model = Sequential([
     Dense(len(CATEGORIES), activation='softmax')
 ])
 
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-
 model.summary()
 ```
 ![model](https://github.com/user-attachments/assets/c2e99836-7930-4790-a0cf-5ad0943010b5)
 
 
 ## Training
-The model is trained using the Adam optimizer and categorical crossentropy loss. Training is performed over 20 epochs.
+The images are loaded, resized, and normalized. The labels are converted to categorical format. The dataset is split into training and testing sets. The model is then compiled and trained.
 
 ```python
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 history = model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test))
 ```
 ![epochs](https://github.com/user-attachments/assets/b98d36e6-4fda-45fe-b7bb-b33a40b57a09)
 
 
 ## Evaluation
-The model is evaluated using accuracy on the test set which is around 0.69 
+The model's performance is evaluated on the test set.
 
 ```python
 loss, accuracy = model.evaluate(X_test, y_test)
@@ -71,31 +72,23 @@ print("Test Accuracy:", accuracy)
 ![acc](https://github.com/user-attachments/assets/207b1e21-a604-448d-bf52-a180e50fee89)
 
 
-## Usage
-To use the model for predicting the moon phase of an input image, follow these steps:
-
-1. Load and preprocess the image.
-2. Use the trained model to predict the phase.
-3. Map the predicted class to the corresponding moon phase.
+## Making Predictions
+You can use the trained model to predict the moon phase of new images.
 
 ```python
-img = cv2.imread('test.jpg')
-img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-resize = tf.image.resize(img, (256,256))
-resize_expanded = np.expand_dims(resize/255, 0)
-test_prediction = model.predict(resize_expanded)
-moon_phases = ["New Moon", "Waxing Crescent", "First Quarter", "Waxing Gibbous", "Full Moon", "Waning Gibbous", "Last Quarter", "Waning Crescent"]
-predicted_class = np.argmax(test_prediction, axis=1)[0]
-print(f'Predicted moon phase is {moon_phases[predicted_class]}')
+def predict_moon_phase(model, img_path):
+    img = cv2.imread(img_path)
+    img_resized = cv2.resize(img, (IMG_SIZE, IMG_SIZE))
+    img_normalized = img_resized / 255.0
+    img_reshaped = np.reshape(img_normalized, (1, IMG_SIZE, IMG_SIZE, 3))
+    prediction = model.predict(img_reshaped)
+    return CATEGORIES[np.argmax(prediction)]
 ```
 
 ## Results
 The training and validation loss and accuracy are plotted to visualize the model's performance over epochs.
+
 ![accuracy](https://github.com/user-attachments/assets/3fbab1fe-3327-48e7-b9ca-501172fc552b)
 
 
 ![loss](https://github.com/user-attachments/assets/7a89291e-d8fd-458a-942e-d12f33c46214)
-
-
-
-
