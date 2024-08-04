@@ -85,9 +85,11 @@ print(f'Predicted moon phase is {moon_phases[predicted_class]}')
 
 ## Results
 The training and validation loss and accuracy are plotted to visualize the model's performance over epochs.
-![accuracy](https://github.com/farzeennimran/Moon-Phases-Prediction-Using-AI/assets/136755585/1304f584-a6a0-40a6-a00e-bd96304fd578)
+![accuracy](https://github.com/user-attachments/assets/3fbab1fe-3327-48e7-b9ca-501172fc552b)
 
-![loss](https://github.com/farzeennimran/Moon-Phases-Prediction-Using-AI/assets/136755585/a9d8e9ba-61d5-4410-a9f0-8bf29e96e7bd)
+
+![loss](https://github.com/user-attachments/assets/7a89291e-d8fd-458a-942e-d12f33c46214)
+
 
 
 
