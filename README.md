@@ -52,7 +52,7 @@ model.summary()
 
 
 ## Training
-The model is trained using the Adam optimizer and Sparse Categorical Crossentropy loss. The dataset is split into training, validation, and test sets with a ratio of 70%, 20%, and 10% respectively. Training is performed over 11 epochs.
+The model is trained using the Adam optimizer and categorical crossentropy loss. Training is performed over 20 epochs.
 
 ```python
 history = model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test))
