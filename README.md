@@ -57,7 +57,8 @@ The model is trained using the Adam optimizer and Sparse Categorical Crossentrop
 ```python
 history = model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test))
 ```
-![epochs](https://github.com/farzeennimran/Moon-Phases-Prediction-Using-AI/assets/136755585/bbaa1892-bbaa-43b5-a0ba-23d47c35b0dd)
+![epochs](https://github.com/user-attachments/assets/b98d36e6-4fda-45fe-b7bb-b33a40b57a09)
+
 
 ## Evaluation
 The model is evaluated using Precision, Recall, and Binary Accuracy metrics. 
