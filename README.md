@@ -85,6 +85,21 @@ def predict_moon_phase(model, img_path):
     return CATEGORIES[np.argmax(prediction)]
 ```
 
+Testing model on different images
+
+```python
+img_path = 'test.jpg'
+predicted_phase = predict_moon_phase(model, img_path)
+print("The predicted moon phase is:", predicted_phase)
+```
+![test_result](https://github.com/user-attachments/assets/48208ee7-c213-4d84-8895-6b5b98c5f88f)
+
+```python
+img_path = 'test1.jpg'
+predicted_phase = predict_moon_phase(model, img_path)
+print("The predicted moon phase is:", predicted_phase)
+```
+
 ## Results
 The training and validation loss and accuracy are plotted to visualize the model's performance over epochs.
 
