@@ -23,7 +23,7 @@ The goal of this project is to accurately classify images of the moon into one o
 8. Waning Crescent
 
 ## Dataset
-The dataset consists of images of the moon labeled with their respective phases. The images are organized in subdirectories named after the phases. Ensure that the dataset is unzipped and placed in the correct directory structure.
+Initially the datatset was taken from kaggle that consisted of images of the moon. I labeled the images with their respective phases, such that, images are organized in subdirectories named after the phases. Ensure that the dataset is unzipped and placed in the correct directory structure.
 
 ## Model Architecture
 The model is a Convolutional Neural Network (CNN) with the following architecture:
