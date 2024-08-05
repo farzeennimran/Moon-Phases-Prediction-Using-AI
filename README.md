@@ -101,6 +101,13 @@ print("The predicted moon phase is:", predicted_phase)
 ```
 ![test1_result](https://github.com/user-attachments/assets/bd716618-eb62-4a5e-89b7-e26320af27a7)
 
+```python
+img_path = 'test2.jpg'
+predicted_phase = predict_moon_phase(model, img_path)
+print("The predicted moon phase is:", predicted_phase)
+```
+
+![test2_result](https://github.com/user-attachments/assets/4609a8be-85cb-42cd-8a38-8edc0af28154)
 
 ## Results
 The training and validation loss and accuracy are plotted to visualize the model's performance over epochs.
